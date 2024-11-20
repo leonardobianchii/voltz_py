@@ -222,3 +222,50 @@ def listar_historico_uso(id_cliente):
     cursor.close()
     conexao.close()
     return historico
+
+def adicionar_transacao(id_cliente, tipo, valor, id_base=None):
+    """
+    Insere uma nova transação no banco de dados.
+    """
+    try:
+        conn = conectar()  # Certifique-se de que esta função retorna uma conexão válida
+        cursor = conn.cursor()
+
+        # Inserir a transação no banco de dados
+        cursor.execute("""
+            INSERT INTO transacoes (id_cliente, tipo, valor, id_base, data)
+            VALUES (%s, %s, %s, %s, NOW())
+        """, (id_cliente, tipo, valor, id_base))
+
+        # Atualizar saldo do cliente
+        if tipo == "credito":
+            cursor.execute("""
+                UPDATE clientes
+                SET saldo = saldo + %s
+                WHERE id_cliente = %s
+            """, (valor, id_cliente))
+        elif tipo == "debito":
+            cursor.execute("""
+                UPDATE clientes
+                SET saldo = saldo + %s
+                WHERE id_cliente = %s
+            """, (valor, id_cliente))
+
+        conn.commit()
+        cursor.close()
+        conn.close()
+    except Exception as e:
+        raise Exception(f"Erro ao adicionar transação: {str(e)}")
+
+def atualizar_saldo_cliente(id_cliente, novo_saldo):
+    try:
+        conn = conectar()
+        cursor = conn.cursor()
+        query = "UPDATE cliente SET saldo = %s WHERE id_cliente = %s"
+        cursor.execute(query, (novo_saldo, id_cliente))
+        conn.commit()
+    except Exception as e:
+        print("Erro ao atualizar saldo:", e)
+    finally:
+        cursor.close()
+        conn.close()

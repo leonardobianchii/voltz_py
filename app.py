@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
 from crud import *
 import re
+from flask_cors import CORS
+from datetime import datetime
 
 app = Flask(__name__)
+CORS(app)
 
 # Variáveis globais para armazenar o último usuário cadastrado e logado
 ultima_recarga_realizada = None
@@ -114,6 +117,47 @@ def historico_transacoes(id_cliente):
         return jsonify({"mensagem": "Nenhuma transação encontrada."}), 404
     except Exception as e:
         return jsonify({"erro": str(e)}), 500
+    
+@app.route('/api/historico_transacoes/<int:id_cliente>', methods=['POST'])
+def criar_transacao(id_cliente):
+    try:
+        dados = request.json
+        tipo = dados.get("tipo")
+        valor = dados.get("valor")
+        id_base = dados.get("id_base")
+
+        # Verificar campos obrigatórios
+        if not tipo or valor is None:
+            return jsonify({"erro": "Campos obrigatórios ausentes."}), 400
+
+        # Buscar saldo atual do cliente
+        saldo_atual = buscar_saldo_por_cliente(id_cliente)
+        if saldo_atual is None:
+            return jsonify({"erro": "Cliente não encontrado."}), 404
+
+        # Atualizar saldo com base no tipo de transação
+        novo_saldo = saldo_atual + valor 
+      
+        # Registrar a transação
+        adicionar_transacao(id_cliente, tipo, valor, id_base)
+
+        # Atualizar o saldo no banco de dados
+        atualizar_saldo_cliente(id_cliente, novo_saldo)
+
+        # Retornar a nova transação e saldo atualizado
+        nova_transacao = {
+            "id_cliente": id_cliente,
+            "tipo": tipo,
+            "valor": valor,
+            "id_base": id_base,
+            "data": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"),
+            "saldo_atualizado": novo_saldo
+        }
+        return jsonify(nova_transacao), 201
+
+    except Exception as e:
+        return jsonify({"erro": str(e)}), 500
+
     
 @app.route('/api/abastecimento', methods=['POST'])
 def abastecimento():
