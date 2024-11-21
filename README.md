@@ -1,21 +1,21 @@
-# Integrantes do projeto:
+# Integrantes do Projeto
 
-	**` RM: 556511 - Angello Turano da Costa `**
-	**` RM: 558317 - Cauã Sanches `**
-	**` RM: 558576 - Leonardo Bianchi `**
+- **RM: 556511 - Angello Turano da Costa**  
+- **RM: 558317 - Cauã Sanches**  
+- **RM: 558576 - Leonardo Bianchi**  
 
-# Link para o video de apresentação do projeto de python:
+---
 
-	https://youtu.be/ZmoR8E8wYGI
+## Links do Projeto
 
-# Link para o repositório no GitHub (front):
+- **Vídeo de Apresentação do Projeto (Python):**  
+  [https://youtu.be/ZmoR8E8wYGI](https://youtu.be/ZmoR8E8wYGI)
 
-	https://github.com/leonardobianchii/voltz
+- **Repositório no GitHub (Front):**  
+  [https://github.com/leonardobianchii/voltz](https://github.com/leonardobianchii/voltz)
 
-# Link para o repositório no GitHub (python):
+- **Repositório no GitHub (Python):**  
+  [https://github.com/leonardobianchii/voltz_py](https://github.com/leonardobianchii/voltz_py)
 
-	https://github.com/leonardobianchii/voltz_py
-
-# Link para acessar a pagina na web (Vercel):
-
-	https://voltz-eta.vercel.app
+- **Página na Web (Vercel):**  
+  [https://voltz-eta.vercel.app](https://voltz-eta.vercel.app)
