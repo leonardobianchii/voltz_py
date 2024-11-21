@@ -23,7 +23,6 @@ def menu_principal():
         else:
             print("Opção inválida. Tente novamente.")
 
-# Cadastro de Cliente
 def cadastro_cliente():
     print("\nCADASTRO DE CLIENTE")
     nome = input("Nome completo: ")
@@ -49,7 +48,6 @@ def cadastro_cliente():
 
     saldo = float(input("Saldo inicial (R$): "))
 
-    # Enviar os dados para a API via POST
     payload = {
         "nome": nome,
         "email": email,
@@ -68,7 +66,6 @@ def cadastro_cliente():
     except Exception as e:
         print(f"Erro ao conectar com o servidor: {e}")
 
-# Login de Cliente
 def login_cliente():
     print("\nLOGIN")
     login = input("Digite seu login: ")
@@ -147,34 +144,30 @@ def iniciar_abastecimento(id_cliente):
     Realiza o abastecimento de energia conforme a quantidade de kWh solicitada pelo cliente.
     """
     print("\nINICIAR ABASTECIMENTO")
-    custo_por_kwh = 0.30  # Custo por kWh em reais
+    custo_por_kwh = 0.30
 
-    # Buscar saldo do cliente
     try:
         response = requests.get(f"{BASE_URL}/saldo/{id_cliente}")
         if response.status_code != 200:
             print(f"Erro ao buscar saldo: {response.json().get('erro')}")
             return
-        saldo = float(response.json()["saldo"])  # Converter saldo para float
+        saldo = float(response.json()["saldo"])
     except Exception as e:
         print(f"Erro ao conectar com o servidor para buscar saldo: {e}")
         return
 
     print(f"Saldo disponível: R$ {saldo:.2f}")
 
-    # Solicitar a quantidade de kWh desejada
     try:
         energia_desejada = float(input("Digite a quantidade de kWh que deseja recarregar: "))
         custo_abastecimento = energia_desejada * custo_por_kwh
 
         print(f"O custo para {energia_desejada:.2f} kWh será de R$ {custo_abastecimento:.2f}")
 
-        # Verificar se o saldo é suficiente
         if saldo < custo_abastecimento:
             print("Saldo insuficiente para realizar o abastecimento.")
             return
 
-        # Confirmar o abastecimento
         confirmacao = input("Deseja prosseguir com o abastecimento? (s/n): ").lower()
         if confirmacao != 's':
             print("Abastecimento cancelado.")
@@ -182,7 +175,6 @@ def iniciar_abastecimento(id_cliente):
 
         id_base = int(input("Digite o ID da base de carregamento: "))
 
-        # Registrar abastecimento via API
         payload = {
             "id_cliente": id_cliente,
             "id_base": id_base,

@@ -5,7 +5,7 @@ def conectar():
     return mysql.connector.connect(
         host="localhost",
         user="root",  
-        password="10688159818",  
+        password="05022002",  
         database="Voltz"
     )
 
@@ -228,7 +228,7 @@ def adicionar_transacao(id_cliente, tipo, valor, id_base=None):
     Insere uma nova transação no banco de dados.
     """
     try:
-        conn = conectar()  # Certifique-se de que esta função retorna uma conexão válida
+        conn = conectar()
         cursor = conn.cursor()
 
         # Inserir a transação no banco de dados

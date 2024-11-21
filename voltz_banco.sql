@@ -79,9 +79,3 @@ VALUES
 ('Goiânia, GO', 300.00, 600.00, 'Manutenção', '2022-07-18', 'Monofásica'),
 ('Foz do Iguaçu, PR', 550.00, 1200.00, 'Ativa', '2020-09-12', 'Trifásica'),
 ('Belém, PA', 320.00, 750.00, 'Inativa', '2018-12-01', 'Bifásica');
-
-select * from historico_uso;
-
-select * from clientes;
-
-drop schema Voltz;
