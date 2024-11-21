@@ -92,7 +92,8 @@ def menu_cliente(id_cliente):
         print("3. Ver histórico de recargas")
         print("4. Ver histórico de uso")
         print("5. Iniciar abastecimento")
-        print("6. Sair")
+        print("6. Importar históricos em JSON")
+        print("7. Sair")
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
@@ -122,6 +123,8 @@ def menu_cliente(id_cliente):
         elif opcao == "5":
             iniciar_abastecimento(id_cliente)
         elif opcao == "6":
+            importar_historicos_json(id_cliente)
+        elif opcao == "7":
             break
         else:
             print("Opção inválida. Tente novamente.")
@@ -215,6 +218,42 @@ def verificar_historico_transacoes(id_cliente):
             print(f"Erro ao buscar histórico: {response.json().get('mensagem')}")
     except Exception as e:
         print(f"Erro ao conectar com o servidor: {e}")
+
+import json
+
+def importar_historicos_json(id_cliente):
+    try:
+        nome_arquivo = input("Digite o nome do arquivo JSON para salvar os históricos (sem extensão): ") + ".json"
+
+        print("\nBuscando histórico de transações...")
+        response_transacoes = requests.get(f"{BASE_URL}/historico_transacoes/{id_cliente}")
+        if response_transacoes.status_code == 200:
+            historico_transacoes = response_transacoes.json()["historico_transacoes"]
+        else:
+            print(f"Erro ao buscar histórico de transações: {response_transacoes.json().get('mensagem')}")
+            historico_transacoes = []
+
+        print("Buscando histórico de uso...")
+        response_uso = requests.get(f"{BASE_URL}/historico_abastecimento/{id_cliente}")
+        if response_uso.status_code == 200:
+            historico_uso = response_uso.json()["historico_abastecimento"]
+        else:
+            print(f"Erro ao buscar histórico de uso: {response_uso.json().get('mensagem')}")
+            historico_uso = []
+
+        dados_historicos = {
+            "historico_transacoes": historico_transacoes,
+            "historico_uso": historico_uso,
+        }
+
+        with open(nome_arquivo, "w", encoding="utf-8") as arquivo_json:
+            json.dump(dados_historicos, arquivo_json, indent=4, ensure_ascii=False)
+
+        print(f"\nHistóricos salvos com sucesso no arquivo '{nome_arquivo}'!")
+
+    except Exception as e:
+        print(f"Erro ao salvar históricos em arquivo JSON: {e}")
+
 
 
 if __name__ == "__main__":
