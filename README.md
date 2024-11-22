@@ -9,7 +9,7 @@
 ## Links do Projeto
 
 - **Vídeo de Apresentação do Projeto (Python):**  
-  [https://youtu.be/ZmoR8E8wYGI](https://youtu.be/ZmoR8E8wYGI)
+  [https://youtu.be/eBPi6mRXCb8](https://youtu.be/eBPi6mRXCb8)
 
 - **Repositório no GitHub (Front):**  
   [https://github.com/leonardobianchii/voltz](https://github.com/leonardobianchii/voltz)
