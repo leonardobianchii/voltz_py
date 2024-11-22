@@ -20,12 +20,14 @@
 - **Página na Web (Vercel):**  
   [https://voltz-eta.vercel.app](https://voltz-eta.vercel.app)
 
-- **Comandos pip (terminal) necessarios para funcionamento do BD:**
+## Comandos pip (terminal) necessarios para funcionamento do BD
 - pip install flask
 - pip install flask_cors
 - pip install mysql
 - pip install mysql.connector
 - pip install --upgrade mysql-connector-python
+  
+---
 
-- **PASTA CRUD!:**
+## PASTA CRUD !!
 - para usar o banco de dados, mudar a senha para a padão do SQL local  
