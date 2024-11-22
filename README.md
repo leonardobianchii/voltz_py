@@ -45,4 +45,12 @@
   - para que esteja de acordo com o MySQL local (banco de dados local).
 
   - Para mais duvidas acesse o repositório de JAVA.
+
+---
+
+### Contato para falar sobre o projeto
+
+- **`EMAIL:`** voltzenergia01@gmail.com
+
+- **`TELEFONE`**  (11) 98683-9381
  
