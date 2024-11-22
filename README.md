@@ -32,5 +32,17 @@
   
 ---
 
-## PASTA CRUD.PY !!
-- para usar o banco de dados, mudar a senha para a padão do SQL local  
+  ## Função importante para o banco MySQL (Python)
+
+  - Em `crud.py` é necessário mudar o ROOT e a SENHA 
+  - para que esteja de acordo com o MySQL local (banco de dados local).
+
+  ---
+
+  ## Função importante para o Banco MySQL (JAVA)
+
+  - Em `application.properties` verifique o ROOT e a SENHA
+  - para que esteja de acordo com o MySQL local (banco de dados local).
+
+  - Para mais duvidas acesse o repositório de JAVA.
+ 
