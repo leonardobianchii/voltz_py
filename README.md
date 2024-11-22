@@ -29,5 +29,5 @@
   
 ---
 
-## PASTA CRUD !!
+## PASTA CRUD.PY !!
 - para usar o banco de dados, mudar a senha para a padão do SQL local  
