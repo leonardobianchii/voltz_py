@@ -17,6 +17,9 @@
 - **Repositório no GitHub (Python):**  
   [https://github.com/leonardobianchii/voltz_py](https://github.com/leonardobianchii/voltz_py)
 
+- **Repositório no GitHub (JAVA):**  
+  [https://github.com/AngelloTDC/voltz-java](https://github.com/AngelloTDC/voltz-java)
+
 - **Página na Web (Vercel):**  
   [https://voltz-eta.vercel.app](https://voltz-eta.vercel.app)
 
